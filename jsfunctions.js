@@ -30,8 +30,9 @@ Array.prototype.last = function() {
  * @returns number minimum number 
  */
 Array.prototype.less = function() {
-    this.ordination('asc');
-    return this.first();
+    var array = this.clone();
+    array.ordination('asc');
+    return array.first();
 }
 
 /**
@@ -57,8 +58,9 @@ Array.prototype.smaller = function() {
  * @returns number bigger of array
  */
 Array.prototype.superior = function() {
-    this.ordination('desc');
-    return this.first();
+    var array = this.clone();
+    array.ordination('desc');
+    return array.first();
 }
 
 /**
@@ -70,6 +72,14 @@ Array.prototype.max = function() {
 }
 
 
+/**
+ * return clone of array
+ * 
+ * @returns {Array.prototype@call;slice}
+ */
+Array.prototype.clone = function() {
+	return this.slice(0);
+};
 
 /**
  * Ordination of array
