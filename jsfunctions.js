@@ -1,3 +1,42 @@
+/**
+ * 
+ * @param {type} search keyword
+ * 
+ * @returns {Boolean}
+ */
+Array.prototype.inArray = function(search) {
+    for (var i in this) {
+
+        if (typeof this[i] == 'object') {
+            var arrayValues = this[i].toArray();
+            for (var j in arrayValues) {
+                var value = typeof arrayValues[j] == 'string' ? arrayValues[j].toLowerCase() : arrayValues[j];
+                if (value == search.toLowerCase()) {
+                    return true;
+                }
+            }
+        }
+
+        var value = typeof this[i] == 'string' ? this[i].toLowerCase() : this[i];
+        if (value == search.toLowerCase()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * 
+ * @param {type} search keyword
+ * 
+ * @returns {Boolean}
+ */
+Array.prototype.hasIndex = function(index) {
+    if (this[index] == undefined) {
+        return false;
+    }
+    return true;
+}
 
 /**
  * return this first value of array
@@ -78,7 +117,7 @@ Array.prototype.max = function() {
  * @returns {Array.prototype@call;slice}
  */
 Array.prototype.clone = function() {
-	return this.slice(0);
+    return this.slice(0);
 };
 
 /**
@@ -122,3 +161,22 @@ Array.prototype.ordination = function(type) {
     });
 }
 
+Object.prototype.toArray = function() {
+    var arr = new Array();
+    for (var i in this) {
+        if (this.hasOwnProperty(i)) {
+            arr.push(this[i]);
+        }
+    }
+    return arr;
+};
+
+Object.prototype.toArrayOfKeys = function() {
+    var arr = new Array();
+    for (var i in this) {
+        if (this.hasOwnProperty(i)) {
+            arr.push(i);
+        }
+    }
+    return arr;
+};
